@@ -20,6 +20,7 @@
     path: "{{ postgres_conf }}"
     regex: "^{{ item.name }} ="
     line: "{{ item.name }} = {{ item.value }}"
+    create: yes
   with_items:
     - "{{ postgres_settings }}"
   when:
