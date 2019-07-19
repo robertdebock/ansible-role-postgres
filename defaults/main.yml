@@ -1,0 +1,18 @@
+---
+# defaults file for postgres
+
+postgres_settings:
+  - name: listen_addresses
+    value: 5432
+  - name: max_wal_size
+    value: 1GB
+  - name: min_wal_size
+    value: 80MB
+  - name: log_timezone
+    value: UCT
+  - name: datestyle
+    value: "'iso, mdy'"
+  - name: timezone
+    value: UCT
+  - name: default_text_search_config
+    value: "'pg_catalog.english'"

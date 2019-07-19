@@ -1,0 +1,15 @@
+---
+# handlers file for postgres
+- name: restart postgres
+  service:
+    name: "{{ postgres_service }}"
+    state: restarted
+  when:
+    - ansible_virtualization_type != "docker"
+
+- name: reload postgres
+  service:
+    name: "{{ postgres_service }}"
+    state: reloaded
+  when:
+    - ansible_virtualization_type != "docker"
