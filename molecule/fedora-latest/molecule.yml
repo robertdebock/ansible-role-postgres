@@ -11,12 +11,6 @@ platforms:
   - name: postgres-fedora-latest
     image: fedora:latest
     pre_build_image: yes
-    privileged: true
-    volume_mounts:
-      - "/sys/fs/cgroup:/sys/fs/cgroup:rw"
-    command: "/usr/sbin/init"
-    environment:
-      container: docker
 provisioner:
   name: ansible
   playbooks:
