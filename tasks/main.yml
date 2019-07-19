@@ -39,6 +39,8 @@
     name: "{{ postgres_service }}"
     state: started
     enabled: yes
+  when:
+    - ansible_virtualization_type != "docker"
 
 - name: create postgres databases
   block:
@@ -59,6 +61,7 @@
         label: "{{ item.name }}"
   when:
     - postgres_databases is defined
+    - ansible_virtualization_type != "docker"
 
 - name: create postgres users
   postgresql_user:
@@ -70,5 +73,6 @@
     - "{{ postgres_users }}"
   when:
     - postgres_users is defined
+    - ansible_virtualization_type != "docker"
   become_user: postgres
   become: true
