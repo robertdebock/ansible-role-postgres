@@ -11,7 +11,7 @@ postgres_settings:
   - name: log_timezone
     value: UCT
   - name: datestyle
-    value: "'iso, mdy'"
+    value: "'iso, ymd'"
   - name: timezone
     value: UCT
   - name: default_text_search_config
