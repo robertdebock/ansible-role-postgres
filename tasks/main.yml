@@ -12,6 +12,8 @@
   command: postgresql-setup --initdb --unit postgresql
   args:
     creates: "{{ postgres_conf }}"
+  when:
+    - ansible_virtualization_type != "docker"
 
 - name: configure postgres
   lineinfile:
