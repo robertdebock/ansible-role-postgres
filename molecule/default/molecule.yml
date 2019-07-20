@@ -58,9 +58,9 @@ provisioner:
     name: ansible-lint
   inventory:
     host_vars:
-      auditd-fedora-latest:
+      postgres-fedora-latest:
         ansible_python_interpreter: /usr/bin/python3
-      auditd-fedora-rawhide:
+      postgres-fedora-rawhide:
         ansible_python_interpreter: /usr/bin/python3
 scenario:
   name: default

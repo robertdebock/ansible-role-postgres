@@ -4,6 +4,10 @@ _postgres_packages:
   default:
     - postgresql-server
     - postgresql-contrib
+  Alpine:
+    - postgresql
+  Archlinux:
+    - postgresql
   Debian:
     - postgresql
     - postgresql-client
@@ -20,11 +24,11 @@ _postgres_psycopg2:
 postgres_psycopg2: "{{ _postgres_psycopg2[ansible_distribution] | default(_postgres_psycopg2['default']) }}"
 
 _postgres_dir:
-  Fedora: /var/lib/pgsql/data
+  default: /var/lib/pgsql/data
   Debian: /etc/postgresql/9.6/main
   Ubuntu: /etc/postgresql/9.6/main
 
-postgres_dir: "{{ _postgres_dir[ansible_distribution] }}"
+postgres_dir: "{{ _postgres_dir[ansible_distribution] | default(_postgres_dir['default']) }}"
 
 postgres_conf: "{{ postgres_dir }}/postgresql.conf"
 
