@@ -12,7 +12,7 @@ _postgres_packages:
     - postgresql
     - postgresql-client
 
-postgres_packages: "{{ _postgres_packages[ansible_os_family] | default(_postgres_packages['default'])) }}"
+postgres_packages: "{{ _postgres_packages[ansible_os_family] | default(_postgres_packages['default']) }}"
 
 _postgres_psycopg2:
   default: python-psycopg2
