@@ -11,28 +11,21 @@ _postgres_packages:
   Debian:
     - postgresql
     - postgresql-client
-  Ubuntu:
-    - postgresql
-    - postgresql-client
 
-postgres_packages: "{{ _postgres_packages[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_postgres_packages[ansible_distribution] | default(_postgres_packages['default'])) }}"
+postgres_packages: "{{ _postgres_packages[ansible_os_family] | default(_postgres_packages['default'])) }}"
 
 _postgres_psycopg2:
   default: python-psycopg2
-  Fedora: python3-psycopg2
+  RedHat: python3-psycopg2
 
-postgres_psycopg2: "{{ _postgres_psycopg2[ansible_distribution] | default(_postgres_psycopg2['default']) }}"
+postgres_psycopg2: "{{ _postgres_psycopg2[ansible_os_family] | default(_postgres_psycopg2['default']) }}"
 
 _postgres_dir:
   default: /var/lib/pgsql/data
   Debian: /etc/postgresql/9.6/main
-  Ubuntu: /etc/postgresql/9.6/main
 
-postgres_dir: "{{ _postgres_dir[ansible_distribution] | default(_postgres_dir['default']) }}"
+postgres_dir: "{{ _postgres_dir[ansible_os_family] | default(_postgres_dir['default']) }}"
 
 postgres_conf: "{{ postgres_dir }}/postgresql.conf"
 
-_postgres_service:
-  default: postgresql
-
-postgres_service: "{{ _postgres_service[ansible_distribution] | default(_postgres_service['default']) }}"
+postgres_service: postgresql
