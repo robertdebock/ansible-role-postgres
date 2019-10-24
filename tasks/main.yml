@@ -74,6 +74,8 @@
     expires: "{{ item.expires | default(omit) }}"
   with_items:
     - "{{ postgres_users }}"
+  loop_control:
+    label: "{{ item.name }}"
   when:
     - postgres_users is defined
     - ansible_virtualization_type != "docker"
