@@ -54,7 +54,7 @@
   retries: 3
   when:
     - postgres_databases is defined or
-    - postgres_users is defined
+      postgres_users is defined
 
 - name: create postgres database
   postgresql_db:
@@ -62,12 +62,10 @@
     state: present
   with_items:
     - "{{ postgres_databases }}"
-  become_user: postgres
-  become: true
   loop_control:
     label: "{{ item.name }}"
   when:
-    - postgres_databases is defined or
+    - postgres_databases is defined
   become_user: postgres
   become: true
 
