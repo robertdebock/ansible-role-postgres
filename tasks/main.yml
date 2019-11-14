@@ -45,40 +45,43 @@
     state: started
     enabled: yes
 
-- name: create postgres databases
-  block:
-    - name: install psycopg2
-      package:
-        name: "{{ postgres_psycopg2 }}"
-        state: present
-      register: postgres_install_psycopg2
-      until: postgres_install_psycopg2 is succeeded
-      retries: 3
-
-    - name: create postgres database
-      postgresql_db:
-        name: "{{ item.name }}"
-        state: present
-      with_items:
-        - "{{ postgres_databases }}"
-      become_user: postgres
-      become: true
-      loop_control:
-        label: "{{ item.name }}"
-
-    - name: create postgres users
-      postgresql_user:
-        name: "{{ item.name }}"
-        db: "{{ item.db | default(omit) }}"
-        password: "{{ item.password }}"
-        expires: "{{ item.expires | default(omit) }}"
-      with_items:
-        - "{{ postgres_users }}"
-      loop_control:
-        label: "{{ item.name }}"
-      when:
-        - postgres_users is defined
-      become_user: postgres
-      become: true
+- name: install psycopg2
+  package:
+    name: "{{ postgres_psycopg2 }}"
+    state: present
+  register: postgres_install_psycopg2
+  until: postgres_install_psycopg2 is succeeded
+  retries: 3
   when:
-    - postgres_databases is defined
+    - postgres_databases is defined or
+    - postgres_users is defined
+
+- name: create postgres database
+  postgresql_db:
+    name: "{{ item.name }}"
+    state: present
+  with_items:
+    - "{{ postgres_databases }}"
+  become_user: postgres
+  become: true
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - postgres_databases is defined or
+  become_user: postgres
+  become: true
+
+- name: create postgres users
+  postgresql_user:
+    name: "{{ item.name }}"
+    db: "{{ item.db | default(omit) }}"
+    password: "{{ item.password }}"
+    expires: "{{ item.expires | default(omit) }}"
+  with_items:
+    - "{{ postgres_users }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - postgres_users is defined
+  become_user: postgres
+  become: true
