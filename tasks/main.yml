@@ -21,7 +21,7 @@
   lineinfile:
     path: "{{ postgres_conf }}"
     regex: "^{{ item.name }} ="
-    line: "{{ item.name }} = {{ item.value }}"
+    line: "{{ item.name }} = '{{ item.value }}'"
     create: yes
   with_items:
     - "{{ postgres_settings }}"
@@ -51,6 +51,9 @@
       package:
         name: "{{ postgres_psycopg2 }}"
         state: present
+      register: postgres_install_psycopg2
+      until: postgres_install_psycopg2 is succeeded
+      retries: 3
 
     - name: create postgres database
       postgresql_db:
@@ -62,20 +65,20 @@
       become: true
       loop_control:
         label: "{{ item.name }}"
+
+    - name: create postgres users
+      postgresql_user:
+        name: "{{ item.name }}"
+        db: "{{ item.db | default(omit) }}"
+        password: "{{ item.password }}"
+        expires: "{{ item.expires | default(omit) }}"
+      with_items:
+        - "{{ postgres_users }}"
+      loop_control:
+        label: "{{ item.name }}"
+      when:
+        - postgres_users is defined
+      become_user: postgres
+      become: true
   when:
     - postgres_databases is defined
-
-- name: create postgres users
-  postgresql_user:
-    name: "{{ item.name }}"
-    db: "{{ item.db | default(omit) }}"
-    password: "{{ item.password }}"
-    expires: "{{ item.expires | default(omit) }}"
-  with_items:
-    - "{{ postgres_users }}"
-  loop_control:
-    label: "{{ item.name }}"
-  when:
-    - postgres_users is defined
-  become_user: postgres
-  become: true
