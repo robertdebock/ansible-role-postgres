@@ -2,8 +2,10 @@
 # defaults file for postgres
 
 postgres_settings:
-  - name: listen_addresses
+  - name: port
     value: 5432
+  - name: listen_addresses
+    value: 127.0.0.1
   - name: max_wal_size
     value: 1GB
   - name: min_wal_size

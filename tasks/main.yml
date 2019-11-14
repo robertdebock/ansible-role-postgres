@@ -9,9 +9,13 @@
   retries: 3
 
 - name: run initdb
-  command: postgresql-setup --initdb --unit postgresql
+  command: initdb -D "{{ postgres_dir }}"
+  environment:
+    PGDATA: /var/lib/pgsql/data
   args:
     creates: "{{ postgres_conf }}"
+  become_user: postgres
+  become: true
 
 - name: configure postgres
   lineinfile:
