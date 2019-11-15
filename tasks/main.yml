@@ -14,8 +14,6 @@
     PGDATA: /var/lib/pgsql/data
   args:
     creates: "{{ postgres_conf }}"
-  become_user: postgres
-  become: true
   when:
     - ansible_os_family != "Debian"
 
