@@ -81,8 +81,10 @@ These variables are set in `defaults/main.yml`:
 # defaults file for postgres
 
 postgres_settings:
-  - name: listen_addresses
+  - name: port
     value: 5432
+  - name: listen_addresses
+    value: 127.0.0.1
   - name: max_wal_size
     value: 1GB
   - name: min_wal_size
@@ -90,11 +92,11 @@ postgres_settings:
   - name: log_timezone
     value: UCT
   - name: datestyle
-    value: "'iso, ymd'"
+    value: iso, ymd
   - name: timezone
     value: UCT
   - name: default_text_search_config
-    value: "'pg_catalog.english'"
+    value: pg_catalog.english
 ```
 
 Requirements
@@ -127,7 +129,6 @@ This role has been tested on these [container images](https://hub.docker.com/):
 
 |container|tag|allow_failures|
 |---------|---|--------------|
-|amazonlinux|1|no|
 |amazonlinux|latest|no|
 |alpine|latest|no|
 |alpine|edge|yes|
@@ -152,6 +153,7 @@ Some variarations of the build matrix do not work. These are the variations and 
 | variation                 | reason                 |
 |---------------------------|------------------------|
 | EL | No package postgresql-server available |
+| amazonlinux:1 | /etc/init.d/postgresql: line 37: /etc/sysconfig/network: No such file or directory |
 
 
 
@@ -197,8 +199,10 @@ This role uses the following modules:
 ```yaml
 ---
 - command
+- file
 - lineinfile
 - package
+- postgresql_db
 - postgresql_user
 - service
 - template
