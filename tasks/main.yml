@@ -8,6 +8,14 @@
   until: postgres_install_postgres is succeeded
   retries: 3
 
+- name: create postgres_dir
+  file:
+    path: "{{ postgres_dir }}"
+    state: directory
+    recurse: yes
+    owner: postgres
+    group: postgres
+
 - name: run initdb
   command: initdb -D "{{ postgres_dir }}"
   environment:
