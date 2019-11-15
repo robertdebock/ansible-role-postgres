@@ -16,9 +16,7 @@ postgres_packages: "{{ _postgres_packages[ansible_os_family] | default(_postgres
 
 _postgres_psycopg2:
   default: python-psycopg2
-  Debian:
-    - libpq-dev
-    - python-psycopg2
+  Debian: python3-psycopg2
   RedHat: python3-psycopg2
 
 postgres_psycopg2: "{{ _postgres_psycopg2[ansible_os_family] | default(_postgres_psycopg2['default']) }}"
