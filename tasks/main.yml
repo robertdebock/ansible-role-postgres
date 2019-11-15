@@ -16,6 +16,8 @@
     creates: "{{ postgres_conf }}"
   when:
     - ansible_os_family != "Debian"
+  become_user: postgres
+  become: true
 
 - name: configure postgres
   lineinfile:
