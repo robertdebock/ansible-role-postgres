@@ -12,6 +12,16 @@ _postgres_packages:
     - postgresql
     - postgresql-client
 
+_postgres_owner:
+  default: postgres
+
+postgres_owner: "{{ _postgres_owner[ansible_os_family] | default(_postgres_owner['default']) }}"
+
+_postgres_group:
+  default: postgres
+
+postgres_group: "{{ _postgres_group[ansible_os_family] | default(_postgres_group['default']) }}"
+
 postgres_packages: "{{ _postgres_packages[ansible_os_family] | default(_postgres_packages['default']) }}"
 
 _postgres_psycopg2:
