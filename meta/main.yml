@@ -35,7 +35,6 @@ galaxy_info:
     - postgres
     - archlinux
     - centos
-    - fedora
     - opensuse
     - rhel
     - ubuntu
