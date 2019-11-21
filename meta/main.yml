@@ -33,7 +33,6 @@ galaxy_info:
 
   galaxy_tags:
     - postgres
-    - alpine
     - archlinux
     - centos
     - debian
