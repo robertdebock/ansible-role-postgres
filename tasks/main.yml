@@ -21,7 +21,7 @@
   environment:
     PGDATA: /var/lib/pgsql/data
   args:
-    creates: "{{ postgres_conf }}"
+    creates: "{{ postgres_conf_dir }}"
   when:
     - ansible_os_family != "Debian"
   become_user: postgres
@@ -29,7 +29,7 @@
 
 - name: configure postgres
   lineinfile:
-    path: "{{ postgres_conf }}"
+    path: "{{ postgres_conf_dir }}/postgresql.conf"
     regex: "^{{ item.name }} ="
     line: "{{ item.name }} = '{{ item.value }}'"
     create: yes
@@ -45,7 +45,7 @@
 - name: create pg_hba.conf
   template:
     src: pg_hba.conf.j2
-    dest: "{{ postgres_dir }}/pg_hba.conf"
+    dest: "{{ postgres_conf_dir }}/pg_hba.conf"
     backup: yes
   notify: reload postgres
 
@@ -65,6 +65,9 @@
   when:
     - postgres_databases is defined or
       postgres_users is defined
+
+- name: flush handlers
+  meta: flush_handlers
 
 - name: create postgres database
   postgresql_db:

@@ -86,6 +86,8 @@ postgres_settings:
     value: 5432
   - name: listen_addresses
     value: 127.0.0.1
+  - name: unix_socket_directories
+    value: /var/run/postgresql
   - name: max_wal_size
     value: 1GB
   - name: min_wal_size
@@ -202,6 +204,7 @@ This role uses the following modules:
 - command
 - file
 - lineinfile
+- meta
 - package
 - postgresql_db
 - postgresql_user

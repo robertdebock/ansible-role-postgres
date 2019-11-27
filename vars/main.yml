@@ -12,17 +12,18 @@ _postgres_packages:
     - postgresql
     - postgresql-client
 
-_postgres_owner:
-  default: postgres
-
-postgres_owner: "{{ _postgres_owner[ansible_os_family] | default(_postgres_owner['default']) }}"
-
-_postgres_group:
-  default: postgres
-
-postgres_group: "{{ _postgres_group[ansible_os_family] | default(_postgres_group['default']) }}"
-
 postgres_packages: "{{ _postgres_packages[ansible_os_family] | default(_postgres_packages['default']) }}"
+
+_postgres_dir:
+  default: /var/lib/pgsql/data
+  # Debian: /etc/postgresql/9.6/main
+  Debian: /var/lib/postgresql/11
+
+postgres_dir: "{{ _postgres_dir[ansible_os_family] | default(_postgres_dir['default']) }}"
+
+postgres_owner: postgres
+
+postgres_group: postgres
 
 _postgres_psycopg2:
   default: python-psycopg2
@@ -31,12 +32,10 @@ _postgres_psycopg2:
 
 postgres_psycopg2: "{{ _postgres_psycopg2[ansible_os_family] | default(_postgres_psycopg2['default']) }}"
 
-_postgres_dir:
-  default: /var/lib/pgsql/data
-  Debian: /etc/postgresql/9.6/main
+_postgres_conf_dir:
+  default: "{{ postgres_dir }}"
+  Debian: /etc/postgresql/11/main
 
-postgres_dir: "{{ _postgres_dir[ansible_os_family] | default(_postgres_dir['default']) }}"
-
-postgres_conf: "{{ postgres_dir }}/postgresql.conf"
+postgres_conf_dir: "{{ _postgres_conf_dir[ansible_os_family] | default(_postgres_conf_dir['default']) }}"
 
 postgres_service: postgresql
