@@ -2,10 +2,10 @@
 # handlers file for postgres
 - name: restart postgres
   service:
-    name: "{{ postgres_service }}"
+    name: postgresql
     state: restarted
 
 - name: reload postgres
   service:
-    name: "{{ postgres_service }}"
+    name: postgresql
     state: reloaded

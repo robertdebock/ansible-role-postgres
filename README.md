@@ -202,7 +202,6 @@ This role uses the following modules:
 ```yaml
 ---
 - command
-- file
 - lineinfile
 - meta
 - package

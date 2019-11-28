@@ -8,22 +8,12 @@
   until: postgres_install_postgres is succeeded
   retries: 3
 
-- name: create postgres_dir
-  file:
-    path: "{{ postgres_dir }}"
-    owner: "{{ postgres_owner }}"
-    group: "{{ postgres_group }}"
-    state: directory
-    recurse: yes
-
-- name: run initdb
-  command: initdb -D "{{ postgres_dir }}"
-  environment:
-    PGDATA: /var/lib/pgsql/data
+- name: initialize database
+  command: initdb -D {{ postgres_dir }}
+  # environment:
+  #   PGDATA: "{{ postgres_dir }}"
   args:
-    creates: "{{ postgres_conf_dir }}"
-  when:
-    - ansible_os_family != "Debian"
+    creates: "{{ postgres_dir }}/PG_VERSION"
   become_user: postgres
   become: true
 
@@ -47,11 +37,12 @@
     src: pg_hba.conf.j2
     dest: "{{ postgres_conf_dir }}/pg_hba.conf"
     backup: yes
-  notify: reload postgres
+  notify:
+    - reload postgres
 
 - name: start and enable postgres
   service:
-    name: "{{ postgres_service }}"
+    name: postgresql
     state: started
     enabled: yes
 

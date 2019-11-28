@@ -16,14 +16,9 @@ postgres_packages: "{{ _postgres_packages[ansible_os_family] | default(_postgres
 
 _postgres_dir:
   default: /var/lib/pgsql/data
-  # Debian: /etc/postgresql/9.6/main
   Debian: /var/lib/postgresql/11
 
 postgres_dir: "{{ _postgres_dir[ansible_os_family] | default(_postgres_dir['default']) }}"
-
-postgres_owner: postgres
-
-postgres_group: postgres
 
 _postgres_psycopg2:
   default: python-psycopg2
@@ -37,5 +32,3 @@ _postgres_conf_dir:
   Debian: /etc/postgresql/11/main
 
 postgres_conf_dir: "{{ _postgres_conf_dir[ansible_os_family] | default(_postgres_conf_dir['default']) }}"
-
-postgres_service: postgresql
