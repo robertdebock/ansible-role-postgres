@@ -16,6 +16,7 @@ postgres_packages: "{{ _postgres_packages[ansible_os_family] | default(_postgres
 
 _postgres_dir:
   default: /var/lib/pgsql/data
+  Alpine: /var/lib/pgsql
   Debian: /var/lib/postgresql/11
 
 postgres_dir: "{{ _postgres_dir[ansible_os_family] | default(_postgres_dir['default']) }}"

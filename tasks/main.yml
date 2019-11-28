@@ -10,10 +10,10 @@
 
 - name: initialize database
   command: initdb -D {{ postgres_dir }}
-  # environment:
-  #   PGDATA: "{{ postgres_dir }}"
   args:
     creates: "{{ postgres_dir }}/PG_VERSION"
+  when:
+    - ansible_os_family != "Debian"
   become_user: postgres
   become: true
 
