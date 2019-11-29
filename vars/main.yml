@@ -6,6 +6,7 @@ _postgres_packages:
     - postgresql-contrib
   Alpine:
     - postgresql
+    - postgresql-dev
   Archlinux:
     - postgresql
   Debian:
@@ -20,13 +21,6 @@ _postgres_dir:
   Debian: /var/lib/postgresql/11
 
 postgres_dir: "{{ _postgres_dir[ansible_os_family] | default(_postgres_dir['default']) }}"
-
-_postgres_psycopg2:
-  default: python-psycopg2
-  Debian: python3-psycopg2
-  RedHat: python3-psycopg2
-
-postgres_psycopg2: "{{ _postgres_psycopg2[ansible_os_family] | default(_postgres_psycopg2['default']) }}"
 
 _postgres_conf_dir:
   default: "{{ postgres_dir }}"

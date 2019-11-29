@@ -8,6 +8,14 @@
   until: postgres_install_postgres is succeeded
   retries: 3
 
+- name: create postgres data directory
+  file:
+    path: "{{ postgres_dir }}"
+    state: directory
+    owner: postgres
+    group: postgres
+    mode: "0700"
+
 - name: initialize database
   command: initdb -D {{ postgres_dir }}
   args:
@@ -46,12 +54,12 @@
     state: started
     enabled: yes
 
-- name: install psycopg2
-  package:
-    name: "{{ postgres_psycopg2 }}"
+- name: install psycopg2-binary
+  pip:
+    name: psycopg2-binary
     state: present
-  register: postgres_install_psycopg2
-  until: postgres_install_psycopg2 is succeeded
+  register: postgres_install_psycopg2_binary
+  until: postgres_install_psycopg2_binary is succeeded
   retries: 3
   when:
     - postgres_databases is defined or
