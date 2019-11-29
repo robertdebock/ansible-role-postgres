@@ -67,9 +67,61 @@ The machine you are running this on, may need to be prepared, I use this playboo
   gather_facts: no
 
   roles:
-    - robertdebock.bootstrap
+    - role: robertdebock.bootstrap
+    - role: robertdebock.buildtools
+    - role: robertdebock.epel
+    - role: robertdebock.python_pip
 ```
 
+After running this role, this playbook runs to verify that everything works, this may be a good example how you can use this role.
+```yaml
+---
+- name: Verify
+  hosts: all
+  become: yes
+  gather_facts: yes
+
+  roles:
+    - role: robertdebock.postgres
+      postgres_databases:
+        - name: test_db
+      postgres_users:
+        - name: test_user_with_pass
+          password: "MyCoMpLeXpAsSwOrD"
+        - name: test_user_with_db
+          password: "MyCoMpLeXpAsSwOrD"
+          db: test_db
+      postgres_hba_entries:
+        - type: local
+          database: all
+          user: all
+          method: peer
+        - type: host
+          database: all
+          user: all
+          address: 127.0.0.1/32
+          method: ident
+        - type: host
+          database: all
+          user: all
+          address: ::1/128
+          method: ident
+        - type: local
+          database: replication
+          user: all
+          method: peer
+        - type: host
+          database: replication
+          user: all
+          address: 127.0.0.1/32
+          method: ident
+        - type: host
+          database: replication
+          user: all
+          address: ::1/128
+          method: ident
+
+```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.
 
@@ -113,6 +165,9 @@ The following roles can be installed to ensure all requirements are met, using `
 ```yaml
 ---
 - robertdebock.bootstrap
+- robertdebock.buildtools
+- robertdebock.epel
+- robertdebock.python_pip
 
 ```
 
@@ -202,9 +257,11 @@ This role uses the following modules:
 ```yaml
 ---
 - command
+- file
 - lineinfile
 - meta
 - package
+- pip
 - postgresql_db
 - postgresql_user
 - service
