@@ -19,43 +19,6 @@ This example is taken from `molecule/resources/playbook.yml` and is tested on ea
 
   roles:
     - role: robertdebock.postgres
-      postgres_databases:
-        - name: test_db
-      postgres_users:
-        - name: test_user_with_pass
-          password: "MyCoMpLeXpAsSwOrD"
-        - name: test_user_with_db
-          password: "MyCoMpLeXpAsSwOrD"
-          db: test_db
-      postgres_hba_entries:
-        - type: local
-          database: all
-          user: all
-          method: peer
-        - type: host
-          database: all
-          user: all
-          address: 127.0.0.1/32
-          method: ident
-        - type: host
-          database: all
-          user: all
-          address: ::1/128
-          method: ident
-        - type: local
-          database: replication
-          user: all
-          method: peer
-        - type: host
-          database: replication
-          user: all
-          address: 127.0.0.1/32
-          method: ident
-        - type: host
-          database: replication
-          user: all
-          address: ::1/128
-          method: ident
 ```
 
 The machine you are running this on, may need to be prepared, I use this playbook to ensure everything is in place to let the role work.
@@ -152,6 +115,36 @@ postgres_settings:
     value: UCT
   - name: default_text_search_config
     value: pg_catalog.english
+
+postgres_hba_entries:
+  - type: local
+    database: all
+    user: all
+    method: peer
+  - type: host
+    database: all
+    user: all
+    address: 127.0.0.1/32
+    method: ident
+  - type: host
+    database: all
+    user: all
+    address: ::1/128
+    method: ident
+  - type: local
+    database: replication
+    user: all
+    method: peer
+  - type: host
+    database: replication
+    user: all
+    address: 127.0.0.1/32
+    method: ident
+  - type: host
+    database: replication
+    user: all
+    address: ::1/128
+    method: ident
 ```
 
 Requirements
