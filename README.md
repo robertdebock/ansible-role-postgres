@@ -180,7 +180,6 @@ This role has been tested on these [container images](https://hub.docker.com/):
 
 |container|tag|allow_failures|
 |---------|---|--------------|
-|amazonlinux|latest|no|
 |alpine|latest|no|
 |alpine|edge|yes|
 |debian|unstable|yes|
@@ -205,6 +204,7 @@ Some variarations of the build matrix do not work. These are the variations and 
 |---------------------------|------------------------|
 | EL | No package postgresql-server available |
 | amazonlinux:1 | /etc/init.d/postgresql: line 37: /etc/sysconfig/network: No such file or directory |
+| amazonlinux | Dependency (python_pip) no supported. |
 
 
 
