@@ -45,7 +45,7 @@ After running this role, this playbook runs to verify that everything works, thi
   gather_facts: yes
 
   roles:
-    - role: robertdebock.postgres
+    - role: {{ galaxy_namespace }}.postgres
       postgres_databases:
         - name: test_db
       postgres_users:
@@ -205,7 +205,6 @@ Some variarations of the build matrix do not work. These are the variations and 
 | EL | No package postgresql-server available |
 | amazonlinux:1 | /etc/init.d/postgresql: line 37: /etc/sysconfig/network: No such file or directory |
 | amazonlinux | Dependency (python_pip) no supported. |
-
 
 
 Testing
