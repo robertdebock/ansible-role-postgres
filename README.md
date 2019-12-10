@@ -240,24 +240,6 @@ image="centos" tox
 image="debian" tag="stable" tox
 ```
 
-Modules
--------
-
-This role uses the following modules:
-```yaml
----
-- command
-- file
-- lineinfile
-- meta
-- package
-- pip
-- postgresql_db
-- postgresql_user
-- service
-- template
-```
-
 License
 -------
 
