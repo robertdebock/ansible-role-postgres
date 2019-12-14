@@ -32,6 +32,5 @@ galaxy_info:
     - postgres
     - archlinux
     - centos
-    - rhel
 
 dependencies: []
