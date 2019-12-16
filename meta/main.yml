@@ -30,7 +30,6 @@ galaxy_info:
 
   galaxy_tags:
     - postgres
-    - archlinux
     - centos
 
 dependencies: []
