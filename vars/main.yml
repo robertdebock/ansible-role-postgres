@@ -7,8 +7,6 @@ _postgres_packages:
   Alpine:
     - postgresql
     - postgresql-dev
-  Archlinux:
-    - postgresql
   Debian:
     - postgresql
     - postgresql-client
