@@ -3,7 +3,6 @@
 _postgres_packages:
   default:
     - postgresql-server
-    - postgresql-contrib
   Alpine:
     - postgresql
     - postgresql-dev
