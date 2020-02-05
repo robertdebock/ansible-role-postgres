@@ -31,8 +31,7 @@
     regex: "^{{ item.name }} ="
     line: "{{ item.name }} = '{{ item.value }}'"
     create: yes
-  with_items:
-    - "{{ postgres_settings }}"
+  loop: "{{ postgres_settings }}"
   when:
     - postgres_settings is defined
   notify:
@@ -72,8 +71,7 @@
   postgresql_db:
     name: "{{ item.name }}"
     state: present
-  with_items:
-    - "{{ postgres_databases }}"
+  loop: "{{ postgres_databases }}"
   loop_control:
     label: "{{ item.name }}"
   when:
@@ -87,8 +85,7 @@
     db: "{{ item.db | default(omit) }}"
     password: "{{ item.password }}"
     expires: "{{ item.expires | default(omit) }}"
-  with_items:
-    - "{{ postgres_users }}"
+  loop: "{{ postgres_users }}"
   loop_control:
     label: "{{ item.name }}"
   when:
