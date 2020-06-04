@@ -2,9 +2,9 @@
 
 Install and configure postgres on your system.
 
-|Travis|GitHub|Quality|Downloads|
-|------|------|-------|---------|
-|[![travis](https://travis-ci.com/robertdebock/ansible-role-postgres.svg?branch=master)](https://travis-ci.com/robertdebock/ansible-role-postgres)|[![github](https://github.com/robertdebock/ansible-role-postgres/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-postgres/actions)|[![quality](https://img.shields.io/ansible/quality/42173)](https://galaxy.ansible.com/robertdebock/postgres)|[![downloads](https://img.shields.io/ansible/role/d/42173)](https://galaxy.ansible.com/robertdebock/postgres)|
+|Travis|GitHub|Quality|Downloads|Version|
+|------|------|-------|---------|-------|
+|[![travis](https://travis-ci.com/robertdebock/ansible-role-postgres.svg?branch=master)](https://travis-ci.com/robertdebock/ansible-role-postgres)|[![github](https://github.com/robertdebock/ansible-role-postgres/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-postgres/actions)|[![quality](https://img.shields.io/ansible/quality/42173)](https://galaxy.ansible.com/robertdebock/postgres)|[![downloads](https://img.shields.io/ansible/role/d/42173)](https://galaxy.ansible.com/robertdebock/postgres)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-postgres.svg)](https://github.com/robertdebock/ansible-role-postgres/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
