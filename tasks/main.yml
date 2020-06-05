@@ -14,7 +14,7 @@
     state: directory
     owner: postgres
     group: postgres
-    mode: "0700"
+    mode: "700"
 
 - name: initialize database
   command: initdb -D {{ postgres_dir }}
