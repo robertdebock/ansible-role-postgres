@@ -23,7 +23,7 @@
   when:
     - ansible_os_family != "Debian"
   become_user: postgres
-  become: true
+  become: yes
 
 - name: configure postgres
   lineinfile:
@@ -77,7 +77,7 @@
   when:
     - postgres_databases is defined
   become_user: postgres
-  become: true
+  become: yes
 
 - name: create postgres users
   postgresql_user:
@@ -91,4 +91,4 @@
   when:
     - postgres_users is defined
   become_user: postgres
-  become: true
+  become: yes
