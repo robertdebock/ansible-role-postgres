@@ -1,5 +1,8 @@
 ---
 # tasks file for postgres
+- name: include assert.yml
+  include_tasks: assert.yml
+
 - name: install postgres
   package:
     name: "{{ postgres_packages }}"
@@ -31,9 +34,25 @@
     regex: "^{{ item.name }} ="
     line: "{{ item.name }} = '{{ item.value }}'"
     create: yes
-  loop: "{{ postgres_settings }}"
-  when:
-    - postgres_settings is defined
+  loop:
+     - name: port
+       value: "{{ postgres_port }}"
+     - name: listen_addresses
+       value: "{{postgres_listen_addresses }}"
+     - name: unix_socket_directories
+       value: "{{ postgres_unix_socket_directories }}"
+     - name: max_wal_size
+       value: "{{ postgres_max_wal_size }}"
+     - name: min_wal_size
+       value: "{{ postgres_min_wal_size }}"
+     - name: log_timezone
+       value: "{{ postgres_log_timezone }}"
+     - name: datestyle
+       value: "{{ postgres_datestyle }}"
+     - name: timezone
+       value: "{{ postgres_timezone }}"
+     - name: default_text_search_config
+       value: "{{ postgres_default_text_search_config }}"
   notify:
     - restart postgres
   loop_control:

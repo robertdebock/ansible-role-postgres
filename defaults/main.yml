@@ -1,25 +1,15 @@
 ---
 # defaults file for postgres
 
-postgres_settings:
-  - name: port
-    value: 5432
-  - name: listen_addresses
-    value: 127.0.0.1
-  - name: unix_socket_directories
-    value: /var/run/postgresql
-  - name: max_wal_size
-    value: 1GB
-  - name: min_wal_size
-    value: 80MB
-  - name: log_timezone
-    value: UCT
-  - name: datestyle
-    value: iso, ymd
-  - name: timezone
-    value: UCT
-  - name: default_text_search_config
-    value: pg_catalog.english
+postgres_port: 5432
+postgres_listen_addresses: 127.0.0.1
+postgres_unix_socket_directories: /var/run/postgresql
+postgres_max_wal_size: 1GB
+postgres_min_wal_size: 80MB
+postgres_log_timezone: UTC
+postgres_datestyle: iso, ymd
+postgres_timezone: UTC
+postgres_default_text_search_config: pg_catalog.english
 
 postgres_hba_entries:
   - type: local
