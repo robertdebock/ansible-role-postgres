@@ -1,4 +1,4 @@
---
+---
 - name: test if postgres_port is set correctly
   assert:
     that:
