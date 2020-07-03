@@ -38,7 +38,7 @@
      - name: port
        value: "{{ postgres_port }}"
      - name: listen_addresses
-       value: "{{postgres_listen_addresses }}"
+       value: "{{ postgres_listen_addresses }}"
      - name: unix_socket_directories
        value: "{{ postgres_unix_socket_directories }}"
      - name: max_wal_size
