@@ -1,5 +1,6 @@
 ---
 # vars file for postgres
+
 _postgres_packages:
   default:
     - postgresql-server
