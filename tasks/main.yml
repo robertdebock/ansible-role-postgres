@@ -7,9 +7,6 @@
   package:
     name: "{{ postgres_packages }}"
     state: present
-  register: postgres_install_postgres
-  until: postgres_install_postgres is succeeded
-  retries: 3
 
 - name: create postgres data directory
   file:
@@ -76,9 +73,6 @@
   pip:
     name: psycopg2-binary
     state: present
-  register: postgres_install_psycopg2_binary
-  until: postgres_install_psycopg2_binary is succeeded
-  retries: 3
   when:
     - postgres_databases is defined or
       postgres_users is defined
