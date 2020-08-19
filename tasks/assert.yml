@@ -6,30 +6,35 @@
       - postgres_port | int
       - postgres_port | int > 0
       - postgres_port | int < 65536
+    quiet: yes
 
 - name: test if postgres_listen_addresses is set correctly
   assert:
     that:
       - postgres_listen_addresses is defined
       - postgres_listen_addresses | length > 0
+    quiet: yes
 
 - name: test if postgres_unix_socket_directories is set correctly
   assert:
     that:
       - postgres_unix_socket_directories is defined
       - postgres_unix_socket_directories | length > 0
+    quiet: yes
 
 - name: test if postgres_max_wal_size is set correctly
   assert:
     that:
       - postgres_max_wal_size is defined
       - postgres_max_wal_size | length > 0
+    quiet: yes
 
 - name: test if postgres_min_wal_size is set correctly
   assert:
     that:
       - postgres_min_wal_size is defined
       - postgres_min_wal_size | length > 0
+    quiet: yes
 
 - name: test if postgres_log_timezone is set correctly
   assert:
@@ -37,12 +42,14 @@
       - postgres_log_timezone is defined
       - postgres_log_timezone | length > 0
       - postgres_log_timezone in postgres_acceptable_timezones
+    quiet: yes
 
 - name: test if postgres_datestyle is set correctly
   assert:
     that:
       - postgres_datestyle is defined
       - postgres_datestyle | length > 0
+    quiet: yes
 
 - name: test if postgres_timezone is set correctly
   assert:
@@ -50,12 +57,14 @@
       - postgres_timezone is defined
       - postgres_timezone | length > 0
       - postgres_timezone in postgres_acceptable_timezones
+    quiet: yes
 
 - name: test if postgres_default_text_search_config is set correctly
   assert:
     that:
       - postgres_default_text_search_config is defined
       - postgres_default_text_search_config | length > 0
+    quiet: yes
 
 - name: test if postgres_hba_entries is set correctly
   assert:
@@ -63,3 +72,4 @@
       - postgres_hba_entries is defined
       - postgres_hba_entries | length > 0
       - postgres_hba_entries is iterable
+    quiet: yes
