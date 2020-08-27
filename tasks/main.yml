@@ -31,6 +31,7 @@
     regex: "^{{ item.name }} ="
     line: "{{ item.name }} = '{{ item.value }}'"
     create: yes
+    mode: "0644"
   loop:
      - name: port
        value: "{{ postgres_port }}"
@@ -60,6 +61,7 @@
     src: pg_hba.conf.j2
     dest: "{{ postgres_conf_dir }}/pg_hba.conf"
     backup: yes
+    mode: "0644"
   notify:
     - reload postgres
 
