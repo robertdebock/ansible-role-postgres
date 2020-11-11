@@ -3,7 +3,7 @@
   assert:
     that:
       - postgres_port is defined
-      - postgres_port | int
+      - postgres_port is number
       - postgres_port | int > 0
       - postgres_port | int < 65536
     quiet: yes
