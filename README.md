@@ -113,11 +113,11 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |container|tags|
 |---------|----|
 |alpine|all|
-|el|8|
-|debian|buster, bullseye|
+|el|7, 8|
+|debian|all|
 |fedora|all|
 |opensuse|all|
-|ubuntu|focal, bionic, xenial|
+|ubuntu|all|
 
 The minimum version of Ansible required is 2.9, tests have been done to:
 
