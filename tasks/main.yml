@@ -86,7 +86,11 @@
 - name: create postgres database
   postgresql_db:
     name: "{{ item.name }}"
-    state: present
+    encoding: "{{ item.encoding | default(omit) }}"
+    conn_limit: "{{ item.conn_limit | default(omit) }}"
+    owner: "{{ item.owner | default(omit) }}"
+    trust_input: "{{ item.trust_input | default(omit) }}"
+    state: "{{ item.state | default(omit) }}"
   loop: "{{ postgres_databases }}"
   loop_control:
     label: "{{ item.name }}"
