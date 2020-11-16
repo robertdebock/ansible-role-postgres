@@ -4,8 +4,8 @@
     that:
       - postgres_port is defined
       - postgres_port is number
-      - postgres_port | int > 0
-      - postgres_port | int < 65536
+      - postgres_port > 0
+      - postgres_port < 65536
     quiet: yes
 
 - name: test if postgres_listen_addresses is set correctly
@@ -89,7 +89,7 @@
   assert:
     that:
       - item.conn_limit is number
-      - item.conn_limit | int > 0
+      - item.conn_limit > 0
     quiet: yes
   loop: "{{ postgres_databases }}"
   loop_control:
