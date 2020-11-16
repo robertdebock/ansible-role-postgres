@@ -73,18 +73,6 @@
   when:
     - postgres_databases is defined
 
-- name: test if item.encoding in postgres_databases is set correctly
-  assert:
-    that:
-      - item.encoding in postgres_acceptable_encodings
-    quiet: yes
-  loop: "{{ postgres_databases }}"
-  loop_control:
-    label: "{{ item.name }}"
-  when:
-    - postgres_databases is defined
-    - item.encoding is defined
-
 - name: test if item.conn_limit in postgres_databases is set correctly
   assert:
     that:
