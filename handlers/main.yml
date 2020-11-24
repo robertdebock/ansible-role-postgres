@@ -1,11 +1,16 @@
 ---
 # handlers file for postgres
+
 - name: restart postgres
   service:
     name: postgresql
     state: restarted
+  when:
+    - not ansible_check_mode | bool
 
 - name: reload postgres
   service:
     name: postgresql
     state: reloaded
+  when:
+    - not ansible_check_mode | bool
