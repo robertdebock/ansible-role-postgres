@@ -2,16 +2,17 @@
 # tasks file for postgres
 
 - name: include assert.yml
-  include_tasks: assert.yml
+  import_tasks: assert.yml
   run_once: yes
+  delegate_to: localhost
 
 - name: install postgres
-  package:
+  ansible.builtin.package:
     name: "{{ postgres_packages }}"
     state: present
 
 - name: create postgres data directory
-  file:
+  ansible.builtin.file:
     path: "{{ postgres_dir }}"
     state: directory
     owner: postgres
@@ -28,7 +29,7 @@
   become: yes
 
 - name: configure postgres
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: "{{ postgres_conf_dir }}/postgresql.conf"
     regex: "^{{ item.name }} ="
     line: "{{ item.name }} = '{{ item.value }}'"
@@ -55,7 +56,7 @@
     label: "{{ item.name }}"
 
 - name: configure wal parameters
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: "{{ postgres_conf_dir }}/postgresql.conf"
     regex: "^{{ item.name }} ="
     line: "{{ item.name }} = '{{ item.value }}'"
@@ -75,7 +76,7 @@
     - ansible_distribution_major_version != "7"
 
 - name: create pg_hba.conf
-  template:
+  ansible.builtin.template:
     src: pg_hba.conf.j2
     dest: "{{ postgres_conf_dir }}/pg_hba.conf"
     backup: yes
@@ -84,13 +85,13 @@
     - reload postgres
 
 - name: start and enable postgres
-  service:
+  ansible.builtin.service:
     name: postgresql
     state: started
     enabled: yes
 
 - name: install psycopg2-binary
-  pip:
+  ansible.builtin.pip:
     name: psycopg2-binary
     state: present
   when:
@@ -98,10 +99,10 @@
       postgres_users is defined
 
 - name: flush handlers
-  meta: flush_handlers
+  ansible.builtin.meta: flush_handlers
 
 - name: create postgres database
-  postgresql_db:
+  community.general.postgresql_db:
     name: "{{ item.name }}"
     encoding: "{{ item.encoding | default(omit) }}"
     conn_limit: "{{ item.conn_limit | default(omit) }}"
@@ -117,7 +118,7 @@
   become: yes
 
 - name: create postgres users
-  postgresql_user:
+  community.general.postgresql_user:
     name: "{{ item.name }}"
     db: "{{ item.db | default(omit) }}"
     password: "{{ item.password }}"

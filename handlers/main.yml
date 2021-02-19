@@ -2,14 +2,14 @@
 # handlers file for postgres
 
 - name: restart postgres
-  service:
+  ansible.builtin.service:
     name: postgresql
     state: restarted
   when:
     - not ansible_check_mode | bool
 
 - name: reload postgres
-  service:
+  ansible.builtin.service:
     name: postgresql
     state: reloaded
   when:
