@@ -102,7 +102,7 @@
   ansible.builtin.meta: flush_handlers
 
 - name: create postgres database
-  community.general.postgresql_db:
+  community.postgresql.postgresql_db:
     name: "{{ item.name }}"
     encoding: "{{ item.encoding | default(omit) }}"
     conn_limit: "{{ item.conn_limit | default(omit) }}"
@@ -118,7 +118,7 @@
   become: yes
 
 - name: create postgres users
-  community.general.postgresql_user:
+  community.postgresql.postgresql_user:
     name: "{{ item.name }}"
     db: "{{ item.db | default(omit) }}"
     password: "{{ item.password }}"
