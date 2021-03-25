@@ -6,3 +6,4 @@
 
   roles:
     - role: ansible-role-postgres
+      postgres_port: 6543

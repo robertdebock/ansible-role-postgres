@@ -6,6 +6,7 @@
 
   roles:
     - role: ansible-role-postgres
+      postgres_port: 6543
       postgres_databases:
         - name: test_db
           state: present

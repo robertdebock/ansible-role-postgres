@@ -18,6 +18,7 @@ This example is taken from `molecule/resources/converge.yml` and is tested on ea
 
   roles:
     - role: robertdebock.postgres
+      postgres_port: 6543
 ```
 
 The machine needs to be prepared in CI this is done using `molecule/resources/prepare.yml`:
