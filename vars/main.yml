@@ -26,3 +26,9 @@ _postgres_conf_dir:
   Debian: /etc/postgresql/11/main
 
 postgres_conf_dir: "{{ _postgres_conf_dir[ansible_os_family] | default(_postgres_conf_dir['default']) }}"
+
+_postgres_socket_directory:
+  default: /var/run/postgresql
+  Alpine: /run/postgresql
+
+postgres_socket_directory: "{{ _postgres_socket_directory[ansible_os_family] | default(_postgres_socket_directory['default']) }}"
