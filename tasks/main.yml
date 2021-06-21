@@ -10,6 +10,8 @@
   ansible.builtin.package:
     name: "{{ postgres_packages }}"
     state: present
+  notify:
+    - systemctl daemon-reexec
 
 - name: create postgres data directory
   ansible.builtin.file:
