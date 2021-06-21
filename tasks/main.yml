@@ -86,6 +86,9 @@
   notify:
     - reload postgres
 
+- name: flush handlers
+  ansible.builtin.meta: flush_handlers
+
 - name: start and enable postgres
   ansible.builtin.service:
     name: postgresql
