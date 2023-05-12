@@ -8,12 +8,12 @@
     - role: ansible-role-postgres
       # postgres_port: 6543
       postgres_databases:
-        - name: test_db
+        - name: Test_db
           state: present
       postgres_users:
-        - name: test_user_with_pass
+        - name: Test_user_with_pass
           password: "MyCoMpLeXpAsSwOrD"
-        - name: test_user_with_db
+        - name: Test_user_with_db
           password: "MyCoMpLeXpAsSwOrD"
           db: test_db
       postgres_hba_entries:
