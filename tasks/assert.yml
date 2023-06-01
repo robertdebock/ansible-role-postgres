@@ -16,13 +16,6 @@
       - postgres_listen_addresses is string
     quiet: yes
 
-- name: assert | Test if postgres_unix_socket_directories is set correctly
-  ansible.builtin.assert:
-    that:
-      - postgres_unix_socket_directories is defined
-      - postgres_unix_socket_directories is string
-    quiet: yes
-
 - name: assert | Test if postgres_max_wal_size is set correctly
   ansible.builtin.assert:
     that:

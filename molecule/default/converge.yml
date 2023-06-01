@@ -7,3 +7,9 @@
   roles:
     - role: ansible-role-postgres
       postgres_port: 6543
+      postgres_databases:
+        - name: test
+      postgres_users:
+        - name: test
+          password: test
+          db: test
