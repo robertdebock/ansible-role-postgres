@@ -28,7 +28,7 @@ _postgres_version:
   Debian:
     bullseye: 13
     bookworm: 15
-postgres_version: "{{ _postgres_version[ansible_distribution][ansible_distribution_release] }}"
+postgres_version: "{{ _postgres_version[ansible_distribution][ansible_distribution_release] | default('no-match-found') }}"
 
 # The default postgres directory for each distribution differs.
 # This map is used to determine the correct directory for each distribution.
