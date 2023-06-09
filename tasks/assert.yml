@@ -14,6 +14,7 @@
     that:
       - postgres_listen_addresses is defined
       - postgres_listen_addresses is string
+      - postgres_listen_addresses is not none
     quiet: yes
 
 - name: assert | Test if postgres_max_wal_size is set correctly
@@ -21,6 +22,7 @@
     that:
       - postgres_max_wal_size is defined
       - postgres_max_wal_size is string
+      - postgres_max_wal_size is not none
     quiet: yes
 
 - name: assert | Test if postgres_min_wal_size is set correctly
@@ -28,6 +30,7 @@
     that:
       - postgres_min_wal_size is defined
       - postgres_min_wal_size is string
+      - postgres_min_wal_size is not none
     quiet: yes
 
 - name: assert | Test if postgres_log_timezone is set correctly
@@ -35,6 +38,7 @@
     that:
       - postgres_log_timezone is defined
       - postgres_log_timezone is string
+      - postgres_log_timezone is not none
       - postgres_log_timezone in postgres_acceptable_timezones
     quiet: yes
   vars:
@@ -45,6 +49,7 @@
     that:
       - postgres_datestyle is defined
       - postgres_datestyle is string
+      - postgres_datestyle is not none
     quiet: yes
 
 - name: assert | Test if postgres_timezone is set correctly
