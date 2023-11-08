@@ -2,9 +2,9 @@
 
 Install and configure postgres on your system.
 
-|GitHub|GitLab|Quality|Downloads|Version|
-|------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-postgres/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-postgres/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-postgres/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-postgres)|[![quality](https://img.shields.io/ansible/quality/42173)](https://galaxy.ansible.com/robertdebock/postgres)|[![downloads](https://img.shields.io/ansible/role/d/42173)](https://galaxy.ansible.com/robertdebock/postgres)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-postgres.svg)](https://github.com/robertdebock/ansible-role-postgres/releases/)|
+|GitHub|GitLab|Downloads|Version|
+|------|------|---------|-------|
+|[![github](https://github.com/robertdebock/ansible-role-postgres/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-postgres/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-postgres/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-postgres)|[![downloads](https://img.shields.io/ansible/role/d/24568)](https://galaxy.ansible.com/robertdebock/postgres)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-postgres.svg)](https://github.com/robertdebock/ansible-role-postgres/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -139,7 +139,7 @@ The minimum version of Ansible required is 2.12, tests have been done to:
 - The current version.
 - The development version.
 
-If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-postgres/issues)
+If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-postgres/issues).
 
 ## [License](#license)
 
