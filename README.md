@@ -1,4 +1,4 @@
-# Ansible role [postgres](#postgres)
+# [Ansible role postgres](#postgres)
 
 Install and configure postgres on your system.
 
