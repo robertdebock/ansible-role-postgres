@@ -1,8 +1,8 @@
 ---
 - name: Verify
   hosts: all
-  become: yes
-  gather_facts: no
+  become: true
+  gather_facts: false
 
   tasks:
     - name: Remove postgres users
@@ -12,12 +12,12 @@
         port: 6543
         state: absent
       become_user: postgres
-      become: yes
+      become: true
 
     - name: Remove postgres database
       community.postgresql.postgresql_db:
         name: test
         port: 6543
         state: absent
-      become: yes
+      become: true
       become_user: postgres
