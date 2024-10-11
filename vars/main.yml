@@ -15,7 +15,8 @@ _postgres_packages:
     - python3-psycopg2
   RedHat:
     - postgresql-server
-    - postgresql-devel
+    - postgresql # client
+    - python3-psycopg2
 postgres_packages: "{{ _postgres_packages[ansible_os_family] | default(_postgres_packages['default']) }}"
 
 # The default postgres version for each distribution differs and is used in the directory structure.
