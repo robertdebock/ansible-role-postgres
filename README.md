@@ -18,7 +18,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
   gather_facts: true
 
   roles:
-    - role: robertdebock.postgres
+    - role: ansible-role-postgres
       postgres_port: 6543
       postgres_databases:
         - name: test
