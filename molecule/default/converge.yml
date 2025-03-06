@@ -5,7 +5,7 @@
   gather_facts: true
 
   roles:
-    - role: ansible-role-postgres
+    - role: robertdebock.postgres
       postgres_port: 6543
       postgres_databases:
         - name: test
