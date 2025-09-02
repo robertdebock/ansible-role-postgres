@@ -25,6 +25,7 @@ _postgres_version:
     bionic: 10
     focal: 12
     jammy: 14
+    noble: 16
   Debian:
     bullseye: 13
     bookworm: 15
