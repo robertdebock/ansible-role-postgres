@@ -96,14 +96,21 @@
     state: started
     enabled: true
 
-- name: Install psycopg2-binary
+- name: Install psycopg2-binary (pip)
   ansible.builtin.pip:
     name: psycopg2-binary
     state: present
   when:
     - postgres_databases is defined or
       postgres_users is defined
-    - ansible_os_family != "Debian"
+    - ansible_os_family not in [ "Alpine", "Debian" ]
+
+- name: Install py3-psycopg2
+  ansible.builtin.package:
+    name: py3-psycopg2
+    state: present
+  when:
+    - ansible_os_family == "Alpine"
 
 - name: Flush handlers again
   ansible.builtin.meta: flush_handlers
@@ -116,7 +123,7 @@
     owner: "{{ item.owner | default(omit) }}"
     trust_input: "{{ item.trust_input | default(omit) }}"
     state: "{{ item.state | default(omit) }}"
-    port: "{{ postgres_port }}"
+    login_port: "{{ postgres_port }}"
   loop: "{{ postgres_databases }}"
   loop_control:
     label: "{{ item.name }}"
