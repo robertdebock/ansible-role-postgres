@@ -103,14 +103,7 @@
   when:
     - postgres_databases is defined or
       postgres_users is defined
-    - ansible_os_family not in [ "Alpine", "Debian" ]
-
-- name: Install py3-psycopg2
-  ansible.builtin.package:
-    name: py3-psycopg2
-    state: present
-  when:
-    - ansible_os_family == "Alpine"
+    - ansible_os_family not in [ "Alpine", "Debian", "RedHat" ]
 
 - name: Flush handlers again
   ansible.builtin.meta: flush_handlers
