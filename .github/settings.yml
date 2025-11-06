@@ -5,4 +5,4 @@
 repository:
   description: Install and configure postgres on your system.
   homepage: https://robertdebock.nl/
-  topics: postgres, ansible, molecule, tox, playbook
+  topics: postgres, ansible, molecule, playbook
