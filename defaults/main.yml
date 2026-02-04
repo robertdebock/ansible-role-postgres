@@ -5,7 +5,7 @@
 postgres_port: 5432
 
 # The interface (address) to listen to. Set to "0.0.0.0" to listen on all interfaces.
-postgres_listen_addresses: "127.0.0.1"
+postgres_listen_addresses: "127.0.0.1, ::1"
 
 postgres_max_wal_size: 1GB
 postgres_min_wal_size: 80MB
