@@ -1,0 +1,15 @@
+digraph PhiloDilemma {
+  label = "Robert de Bock" ;
+  overlap=false
+  {
+    "postgres" [fillcolor=yellow style=filled penwidth=3]
+    "robertdebock.bootstrap" [fillcolor=green style=filled]
+    "robertdebock.buildtools" [fillcolor=green style=filled]
+    "robertdebock.epel" [fillcolor=green style=filled]
+    "robertdebock.python_pip" [fillcolor=green style=filled]
+  }
+  "postgres" -> "robertdebock.bootstrap"
+  "postgres" -> "robertdebock.buildtools"
+  "postgres" -> "robertdebock.epel"
+  "postgres" -> "robertdebock.python_pip"
+}
