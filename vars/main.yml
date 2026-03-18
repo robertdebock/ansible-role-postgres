@@ -18,7 +18,7 @@ _postgres_packages:
     - postgresql-server
     - postgresql-devel
     - python3-psycopg2
-postgres_packages: "{{ _postgres_packages[ansible_os_family] | default(_postgres_packages['default']) }}"
+postgres_packages: "{{ _postgres_packages[ansible_facts['os_family']] | default(_postgres_packages['default']) }}"
 
 # The default postgres version for each distribution differs and is used in the directory structure.
 # This map is used to determine the correct version for each distribution.
@@ -32,7 +32,7 @@ _postgres_version:
     bullseye: 13
     bookworm: 15
     trixie: 17
-postgres_version: "{{ _postgres_version[ansible_distribution][ansible_distribution_release] | default('no-match-found') }}"
+postgres_version: "{{ _postgres_version[ansible_facts['distribution']][ansible_facts['distribution_release']] | default('no-match-found') }}"
 
 # The default postgres directory for each distribution differs.
 # This map is used to determine the correct directory for each distribution.
@@ -40,7 +40,7 @@ _postgres_dir:
   default: /var/lib/pgsql/data
   Alpine: /var/lib/pgsql
   Debian: /var/lib/postgresql/{{ postgres_version }}
-postgres_dir: "{{ _postgres_dir[ansible_os_family] | default(_postgres_dir['default']) }}"
+postgres_dir: "{{ _postgres_dir[ansible_facts['os_family']] | default(_postgres_dir['default']) }}"
 
 # The default postgres configuration directory for each distribution differs.
 # This map is used to determine the correct directory for each distribution.
@@ -48,7 +48,7 @@ _postgres_conf_dir:
   default: "{{ postgres_dir }}"
   Alpine: /etc/postgresql
   Debian: /etc/postgresql/{{ postgres_version }}/main
-postgres_conf_dir: "{{ _postgres_conf_dir[ansible_os_family] | default(_postgres_conf_dir['default']) }}"
+postgres_conf_dir: "{{ _postgres_conf_dir[ansible_facts['os_family']] | default(_postgres_conf_dir['default']) }}"
 
 # The default postgresql socket directory for each distribution differs.
 # This map is used to determine the correct directory for each distribution.
@@ -57,4 +57,4 @@ _postgres_socket_directory:
   Alpine: /run/postgresql
   Debian: /run/postgresql
   Debian13: /var/run/postgresql
-postgres_socket_directory: "{{ _postgres_socket_directory[ansible_os_family+ansible_distribution_major_version] | default(_postgres_socket_directory[ansible_os_family]) | default(_postgres_socket_directory['default']) }}"
+postgres_socket_directory: "{{ _postgres_socket_directory[ansible_facts['os_family']+ansible_facts['distribution_major_version']] | default(_postgres_socket_directory[ansible_facts['os_family']]) | default(_postgres_socket_directory['default']) }}"
