@@ -8,8 +8,8 @@
     - name: Remove postgres users
       community.postgresql.postgresql_user:
         name: test
-        db: test
-        port: 6543
+        login_db: test
+        login_port: 6543
         state: absent
       become_user: postgres
       become: true
@@ -17,7 +17,7 @@
     - name: Remove postgres database
       community.postgresql.postgresql_db:
         name: test
-        port: 6543
+        login_port: 6543
         state: absent
       become: true
       become_user: postgres
